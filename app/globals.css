@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --color-gold: #C8A96E;
+  --color-gold-dim: rgba(200,169,110,0.55);
+  --color-gold-muted: rgba(200,169,110,0.12);
+  --color-sand: #F5F0E8;
+  --color-pearl: #FAF7F2;
+  --color-obsidian: #1A1A1A;
+  --color-ink: #0D0D0D;
+  --color-ivory: #FAFAF8;
+  --ease-luxury: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-obsidian);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Grain film overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 2px; }
+
+/* ─── Selection ─── */
+::selection { background: var(--color-gold); color: #fff; }
+
+/* ─── Typography ─── */
+.heading-display {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.heading-serif {
+  font-family: var(--font-cormorant);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.label-caps {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.body-light {
+  font-family: var(--font-inter);
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.gold-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--color-gold);
+  display: block;
+}
+
+/* ─── Buttons ─── */
+.btn-gold {
+  display: inline-block;
+  background: var(--color-gold);
+  color: #fff;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.75rem;
+  transition: background 0.45s var(--ease-luxury), color 0.45s var(--ease-luxury);
+  border: 1px solid var(--color-gold);
+  text-decoration: none;
+}
+.btn-gold:hover { background: transparent; color: var(--color-gold); }
+
+.btn-ghost-white {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.75rem;
+  transition: background 0.45s var(--ease-luxury), border-color 0.45s var(--ease-luxury);
+  border: 1px solid rgba(255,255,255,0.45);
+  text-decoration: none;
+}
+.btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.85); }
+
+.btn-ghost-dark {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-obsidian);
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.75rem;
+  transition: background 0.45s var(--ease-luxury), color 0.45s var(--ease-luxury);
+  border: 1px solid var(--color-obsidian);
+  text-decoration: none;
+}
+.btn-ghost-dark:hover { background: var(--color-obsidian); color: #fff; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(48px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 120px; }
+}
+@keyframes scrollDot {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+@keyframes loadReveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes loadLine {
+  from { width: 0; opacity: 0; }
+  to   { width: 100px; opacity: 1; }
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ─── Scroll Reveal helpers ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity 1s var(--ease-reveal), transform 1s var(--ease-reveal);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-luxury);
+}
+.reveal-fade.is-visible { opacity: 1; }
+
+/* ─── Date picker ─── */
+input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.4; cursor: pointer; }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.22); }
+
+/* ─── Calendar (rdp) ─── */
+.rdp {
+  --rdp-accent-color: #C8A96E !important;
+  --rdp-background-color: rgba(200,169,110,0.08) !important;
+  font-family: var(--font-inter) !important;
+  font-size: 0.8rem !important;
+  margin: 0 !important;
+}
+.rdp-day_selected { background: #C8A96E !important; }
+.rdp-nav_button:hover { background: rgba(200,169,110,0.15) !important; }
+
+/* ─── Mobile gallery grid override ─── */
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr !important; }
+}
