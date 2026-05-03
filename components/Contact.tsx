@@ -18,21 +18,16 @@ export default function Contact() {
     return () => observer.disconnect()
   }, [])
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    try {
-      await fetch('/api/inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, type: 'general' }),
-      })
-      setSent(true)
-    } catch {
-      setSent(true) // Optimistic — still confirm to user
-    } finally {
-      setLoading(false)
-    }
+    const subject = encodeURIComponent(`Enquiry from ${form.name}`)
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || 'Not provided'}\n\n${form.message}`
+    )
+    window.location.href = `mailto:info@theylangylang.com?subject=${subject}&body=${body}`
+    setSent(true)
+    setLoading(false)
   }
 
   const inputStyle = {
