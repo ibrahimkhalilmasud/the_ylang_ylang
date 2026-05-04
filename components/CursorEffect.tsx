@@ -9,6 +9,7 @@ export default function CursorEffect() {
   const ring = useRef({ x: -200, y: -200 })
   const hovering = useRef(false)
   const [visible, setVisible] = useState(false)
+  const visibleRef = useRef(false)
 
   useEffect(() => {
     // Only show on non-touch devices
@@ -18,7 +19,10 @@ export default function CursorEffect() {
 
     const onMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY }
-      if (!visible) setVisible(true)
+      if (!visibleRef.current) {
+        visibleRef.current = true
+        setVisible(true)
+      }
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`
       }
