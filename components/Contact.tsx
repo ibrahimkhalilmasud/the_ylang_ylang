@@ -66,11 +66,11 @@ export default function Contact() {
               color: 'var(--color-obsidian)',
               marginBottom: '1.75rem',
             }}>
-              We'd Love to<br />Welcome You
+              We&apos;d Love to<br />Welcome You
             </h2>
             <div className="gold-rule" style={{ marginBottom: '1.75rem' }} />
             <p className="body-light" style={{ color: '#666', fontSize: '0.9rem', maxWidth: '380px', marginBottom: '3rem' }}>
-              Whether you have questions about the villa, want to discuss a special occasion, or are ready to reserve your dates — we're here to help.
+              Whether you have questions about the villa, want to discuss a special occasion, or are ready to reserve your dates — we&apos;re here to help.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -119,7 +119,7 @@ export default function Contact() {
                   Message Received
                 </h3>
                 <p className="body-light" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>
-                  Thank you for reaching out. We'll be in touch shortly.
+                  Thank you for reaching out. We&apos;ll be in touch shortly.
                 </p>
               </div>
             ) : (
