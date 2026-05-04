@@ -7,6 +7,7 @@ export default function Hero() {
   const contentRef = useRef<HTMLDivElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
   useEffect(() => {
     setMounted(true)
@@ -44,7 +45,7 @@ export default function Hero() {
     >
       <video
         ref={videoRef}
-        src="/hero.mp4"
+        src={`${basePath}/hero.mp4`}
         autoPlay muted loop playsInline
         onCanPlay={() => setVideoLoaded(true)}
         style={{
@@ -63,7 +64,7 @@ export default function Hero() {
       <div style={{
         position: 'absolute',
         inset: 0,
-        backgroundImage: 'url(/images/beach-sunset.jpg)',
+        backgroundImage: `url(${basePath}/images/beach-sunset.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         opacity: videoLoaded ? 0 : 1,
